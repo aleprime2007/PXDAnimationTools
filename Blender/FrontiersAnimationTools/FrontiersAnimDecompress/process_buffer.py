@@ -22,7 +22,7 @@ class ACLCompressor:
         name = "FrontiersAnimDecompress.dll"
     else:
         path = bpy.utils.user_resource('SCRIPTS', path='addons/FrontiersAnimationTools/FrontiersAnimDecompress')
-        name = "libFrontiersAnimDecompress.so"
+        name = "FrontiersAnimDecompress.so"
 
     def __init__(self):
         if sys.platform == "win32": self.dll = ctypes.CDLL(f"{self.path}\\{self.name}")

@@ -10,7 +10,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/includes/acl
 )
 
-# Archivos fuente
 set(SOURCES
     FrontiersAnimDecompress.cpp
 )
@@ -18,6 +17,7 @@ set(SOURCES
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
+    PREFIX ""
     CXX_VISIBILITY_PRESET hidden
     VISIBILITY_INLINES_HIDDEN YES
 )
@@ -35,3 +35,7 @@ if(MSVC)
 endif()
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}> ${CMAKE_SOURCE_DIR}
+)
